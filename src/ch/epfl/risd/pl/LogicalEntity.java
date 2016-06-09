@@ -11,7 +11,7 @@ public abstract class LogicalEntity {
 	/***************************************************************************/
 	
 	/* Function to calculate the formula */
-	public abstract Formula calculate();
+	public abstract LogicalEntity calculate();
 
 	/* Function to evaluate the formula */
 	public abstract String evaluate();

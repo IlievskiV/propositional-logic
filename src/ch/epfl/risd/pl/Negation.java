@@ -22,7 +22,7 @@ public class Negation extends UnaryFormula {
 	
 	
 	@Override
-	public Formula calculate() {
+	public LogicalEntity calculate() {
 		// TODO Auto-generated method stub
 		return null;
 	}

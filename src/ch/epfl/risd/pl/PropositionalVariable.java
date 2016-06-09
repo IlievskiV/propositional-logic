@@ -5,7 +5,7 @@ package ch.epfl.risd.pl;
  * true or false.
  */
 
-public class PropositionalVariable extends Formula {
+public class PropositionalVariable extends Literal {
 
 	/****************************************************************************/
 	/* VARIABLES */
@@ -20,7 +20,7 @@ public class PropositionalVariable extends Formula {
 	
 	/* Nothing to calculate for Propositional Variable */
 	@Override
-	public Formula calculate() {
+	public LogicalEntity calculate() {
 		return this;
 	}
 	

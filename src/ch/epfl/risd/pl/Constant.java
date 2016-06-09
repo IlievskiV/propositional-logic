@@ -4,7 +4,7 @@ package ch.epfl.risd.pl;
 /**
  * This class represents a Constant with a value either TRUE of FALSE;
  */
-public class Constant extends Formula{
+public class Constant extends Literal{
 	
 	/****************************************************************************/
 	/* VARIABLES */
@@ -26,7 +26,7 @@ public class Constant extends Formula{
 	
 	/* Nothing to calculate for the Constant */
 	@Override
-	public Formula calculate() {
+	public LogicalEntity calculate() {
 		return this;
 	}
 	

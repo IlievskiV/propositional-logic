@@ -30,7 +30,7 @@ public class Conjunction extends BinaryFormula {
 	}
 
 	@Override
-	public Formula calculate() {
+	public LogicalEntity calculate() {
 		// TODO Auto-generated method stub
 		return null;
 	}
