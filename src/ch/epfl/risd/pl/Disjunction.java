@@ -4,15 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This class represents a Conjunction.
+ * This class will represent the Disjunction
  */
-public class Conjunction extends Formula {
+public class Disjunction extends Formula {
 
 	/****************************************************************************/
 	/* VARIABLES */
 	/***************************************************************************/
 
-	/* The list of sub-formulas of which the conjunction is consisted */
+	/* The list of sub-formulas of which the disjunction is consisted */
 	private List<Formula> subFormulas;
 
 	/****************************************************************************/
@@ -20,23 +20,22 @@ public class Conjunction extends Formula {
 	/***************************************************************************/
 
 	/* Constructor for empty list of sub-formulas */
-	public Conjunction() {
-		subFormulas = new LinkedList<Formula>();
+	public Disjunction() {
+		subFormulas = new LinkedList<>();
 	}
 
-	/* Constructor for conjunction of two formulas */
-	public Conjunction(Formula formula1, Formula formula2) {
-		subFormulas = new LinkedList<Formula>();
+	/* Constructor for disjunction of two formulas */
+	public Disjunction(Formula formula1, Formula formula2) {
+		subFormulas = new LinkedList<>();
 		subFormulas.add(formula1);
 		subFormulas.add(formula2);
 	}
 
-	/* Constructor for the conjunction of list of sub-formulas */
-	public Conjunction(List<Formula> subFormulas) {
+	/* Constructor for the disjunction of list of sub-formulas */
+	public Disjunction(List<Formula> subFormulas) {
 		this.subFormulas = subFormulas;
 	}
-	
-	
+
 	@Override
 	public Formula calculate() {
 		// TODO Auto-generated method stub
@@ -56,14 +55,14 @@ public class Conjunction extends Formula {
 
 		/* Iterate over the sub-formulas */
 		for (Formula f : subFormulas) {
-			sb.append(f.toString() + "*");
+			sb.append(f.toString() + "+");
 		}
 
 		/* Cut the last star */
 		sb.setLength(sb.length() - 1);
 		return sb.toString();
 	}
-	
+
 	/* Get the list of sub-formulas */
 	public List<Formula> getSubFormulas() {
 		return subFormulas;
