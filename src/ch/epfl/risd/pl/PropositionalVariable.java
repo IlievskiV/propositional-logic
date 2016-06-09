@@ -18,9 +18,9 @@ public class PropositionalVariable extends Formula {
 	/* PUBLIC METHODS */
 	/***************************************************************************/
 	
-	/* The evaluation is the formula itself */
+	/* The calculation is the formula itself */
 	@Override
-	public Formula evaluate() {
+	public Formula calculate() {
 		return this;
 	}
 	
@@ -29,5 +29,12 @@ public class PropositionalVariable extends Formula {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+
+	@Override
+	public String evaluate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }	

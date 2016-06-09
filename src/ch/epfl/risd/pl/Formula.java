@@ -5,6 +5,10 @@ package ch.epfl.risd.pl;
  */
 public abstract class Formula {
 
+	/* Function to calculate the formula */
+	public abstract Formula calculate();
+	
 	/* Function to evaluate the formula */
-	public abstract Formula evaluate();
+	public abstract String evaluate();
+
 }
