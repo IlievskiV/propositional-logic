@@ -45,7 +45,7 @@ public class Conjunction extends BinaryFormula {
 		}
 
 		/* Create a temporary list of entities */
-		List<LogicalEntity> temp = extractEntities(calculatedFirstEntity);
+		List<LogicalEntity> left = extractEntities(calculatedFirstEntity);
 
 		/* Iterate starting from the second */
 		for (int i = 1; i < subEntities.size(); i++) {
@@ -58,17 +58,37 @@ public class Conjunction extends BinaryFormula {
 				/* We should minimize it */
 			}
 
+			/* Extract the right list */
+			List<LogicalEntity> right = extractEntities(calculatedCurrentEntity);
+
+			/* Create empty temporary list */
+			List<LogicalEntity> temp = new LinkedList<LogicalEntity>();
+
 			/* If we have detected disjunction */
 			if (isDisjunction) {
-
+				/* Iterate over the left */
+				for (LogicalEntity l : left) {
+					/* Iterate over the right */
+					for (LogicalEntity r : right) {
+						/* Add them as a conjunction */
+						temp.add(new Conjunction(l.makeCopy(), r.makeCopy()));
+					}
+				}
 			} else {
-
+				/* It should have only one element */
+				temp.add(new Conjunction(left.get(0), right.get(0)));
 			}
+
+			/* Change left and temporary */
+			left = temp;
+
 		}
 
-		/* Iterate over the sub-entities */
-
-		return null;
+		if (isDisjunction) {
+			return new Disjunction(left);
+		} else {
+			return new Conjunction(left);
+		}
 	}
 
 	@Override
