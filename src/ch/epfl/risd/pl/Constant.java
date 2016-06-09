@@ -1,24 +1,30 @@
 package ch.epfl.risd.pl;
 
+
 /**
- * This class represents propositional variable in mathematical logic. It can be
- * true or false.
+ * This class represents a Constant with a value either TRUE of FALSE;
  */
-
-public class PropositionalVariable extends Formula {
-
+public class Constant extends Formula{
+	
 	/****************************************************************************/
 	/* VARIABLES */
 	/***************************************************************************/
-
-	/* The name of the propositional variable */
-	private String name;
-
+	
+	/* The value of the constant */
+	private boolean value;
+	
+	
 	/****************************************************************************/
 	/* PUBLIC METHODS */
 	/***************************************************************************/
 	
-	/* Nothing to calculate for Propositional Variable */
+	/* Constructor */
+	public Constant(boolean value){
+		this.value = value;
+	}
+	
+	
+	/* Nothing to calculate for the Constant */
 	@Override
 	public Formula calculate() {
 		return this;
@@ -27,13 +33,12 @@ public class PropositionalVariable extends Formula {
 	/* Not implemented yet */
 	@Override
 	public String evaluate() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	/* The string representation of the Propositional Variable */
+
+	/* The String representation of the Constant */
 	@Override
 	public String toString() {
-		return name;
+		return "" + value;
 	}
-}	
+}
