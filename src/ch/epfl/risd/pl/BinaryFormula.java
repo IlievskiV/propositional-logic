@@ -1,13 +1,15 @@
 package ch.epfl.risd.pl;
 
+import java.util.List;
+
 /**
- * This class will represent the unary formula, i.e. a formula which contains
- * only one sub-formula.
+ * This class represents a binary formula, i.e. a formula which contains
+ * multiple sub-formulas.
  */
-public abstract class UnaryFormula extends Formula {
-	
+public abstract class BinaryFormula extends Formula {
+
 	/****************************************************************************/
 	/* VARIABLES */
 	/***************************************************************************/
-	
+
 }
