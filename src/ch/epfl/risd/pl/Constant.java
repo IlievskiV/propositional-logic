@@ -11,7 +11,7 @@ public class Constant extends Literal{
 	/***************************************************************************/
 	
 	/* The value of the constant */
-	private boolean value;
+	protected boolean value;
 	
 	
 	/****************************************************************************/
