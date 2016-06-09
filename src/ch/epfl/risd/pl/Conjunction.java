@@ -14,19 +14,19 @@ public class Conjunction extends BinaryFormula {
 
 	/* Constructor for empty list of sub-formulas */
 	public Conjunction() {
-		subFormulas = new LinkedList<Formula>();
+		subEntities = new LinkedList<LogicalEntity>();
 	}
 
 	/* Constructor for conjunction of two formulas */
-	public Conjunction(Formula formula1, Formula formula2) {
-		subFormulas = new LinkedList<Formula>();
-		subFormulas.add(formula1);
-		subFormulas.add(formula2);
+	public Conjunction(LogicalEntity entity1, LogicalEntity entity2) {
+		subEntities = new LinkedList<LogicalEntity>();
+		subEntities.add(entity1);
+		subEntities.add(entity2);
 	}
 
 	/* Constructor for the conjunction of list of sub-formulas */
-	public Conjunction(List<Formula> subFormulas) {
-		this.subFormulas = subFormulas;
+	public Conjunction(List<LogicalEntity> subEntities) {
+		this.subEntities = subEntities;
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public class Conjunction extends BinaryFormula {
 		/* The resulting string */
 		StringBuilder sb = new StringBuilder();
 
-		/* Iterate over the sub-formulas */
-		for (Formula f : subFormulas) {
-			sb.append(f.toString() + "*");
+		/* Iterate over the sub-entitiess */
+		for (LogicalEntity l : subEntities) {
+			sb.append(l.toString() + "*");
 		}
 
 		/* Cut the last star */

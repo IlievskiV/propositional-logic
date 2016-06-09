@@ -11,5 +11,5 @@ public abstract class UnaryFormula extends Formula {
 	/***************************************************************************/
 	
 	/* The  sub-formula this formula is containing */
-	protected Formula formula;
+	protected LogicalEntity entity;
 }

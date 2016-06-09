@@ -6,24 +6,29 @@ package ch.epfl.risd.pl;
 public class Negation extends UnaryFormula {
 
 	/****************************************************************************/
-	/* VARIABLES */
-	/***************************************************************************/
-
-	
-
-	/****************************************************************************/
 	/* PUBLIC METHODS */
 	/***************************************************************************/
 
 	/* Constructor */
-	public Negation(Formula formula) {
-		this.formula = formula;
+	public Negation(LogicalEntity entity) {
+		this.entity = entity;
 	}
-	
-	
+
 	@Override
 	public LogicalEntity calculate() {
-		// TODO Auto-generated method stub
+		
+		if(entity instanceof Conjunction){
+			
+		}else if(entity instanceof Disjunction){
+			
+		}else if(entity instanceof Negation){
+			
+		}else if(entity instanceof PropositionalVariable){
+			
+		}else{
+			
+		}
+		
 		return null;
 	}
 
@@ -33,9 +38,8 @@ public class Negation extends UnaryFormula {
 		return null;
 	}
 
-
 	@Override
 	public String toString() {
-		return formula.toString();
+		return entity.toString();
 	}
 }

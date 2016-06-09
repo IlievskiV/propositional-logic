@@ -14,19 +14,19 @@ public class Disjunction extends BinaryFormula {
 
 	/* Constructor for empty list of sub-formulas */
 	public Disjunction() {
-		subFormulas = new LinkedList<>();
+		subEntities = new LinkedList<LogicalEntity>();
 	}
 
 	/* Constructor for disjunction of two formulas */
-	public Disjunction(Formula formula1, Formula formula2) {
-		subFormulas = new LinkedList<>();
-		subFormulas.add(formula1);
-		subFormulas.add(formula2);
+	public Disjunction(LogicalEntity entity1, LogicalEntity entity2) {
+		subEntities = new LinkedList<LogicalEntity>();
+		subEntities.add(entity1);
+		subEntities.add(entity2);
 	}
 
 	/* Constructor for the disjunction of list of sub-formulas */
-	public Disjunction(List<Formula> subFormulas) {
-		this.subFormulas = subFormulas;
+	public Disjunction(List<LogicalEntity> subEntities) {
+		this.subEntities = subEntities;
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public class Disjunction extends BinaryFormula {
 		/* The resulting string */
 		StringBuilder sb = new StringBuilder();
 
-		/* Iterate over the sub-formulas */
-		for (Formula f : subFormulas) {
-			sb.append(f.toString() + "+");
+		/* Iterate over the sub-entities */
+		for (LogicalEntity l : subEntities) {
+			sb.append(l.toString() + "+");
 		}
 
 		/* Cut the last star */
