@@ -1,14 +1,8 @@
 package ch.epfl.risd.pl;
 
 /**
- * Base class for the propositional logic.
+ * This class is a base class for Formulas
  */
-public abstract class Formula {
-
-	/* Function to calculate the formula */
-	public abstract Formula calculate();
-	
-	/* Function to evaluate the formula */
-	public abstract String evaluate();
+public abstract class Formula extends LogicalEntity {
 
 }

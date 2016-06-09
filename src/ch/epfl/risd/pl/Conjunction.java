@@ -6,14 +6,7 @@ import java.util.List;
 /**
  * This class represents a Conjunction.
  */
-public class Conjunction extends Formula {
-
-	/****************************************************************************/
-	/* VARIABLES */
-	/***************************************************************************/
-
-	/* The list of sub-formulas of which the conjunction is consisted */
-	private List<Formula> subFormulas;
+public class Conjunction extends BinaryFormula {
 
 	/****************************************************************************/
 	/* PUBLIC METHODS */
@@ -35,8 +28,7 @@ public class Conjunction extends Formula {
 	public Conjunction(List<Formula> subFormulas) {
 		this.subFormulas = subFormulas;
 	}
-	
-	
+
 	@Override
 	public Formula calculate() {
 		// TODO Auto-generated method stub
@@ -62,10 +54,5 @@ public class Conjunction extends Formula {
 		/* Cut the last star */
 		sb.setLength(sb.length() - 1);
 		return sb.toString();
-	}
-	
-	/* Get the list of sub-formulas */
-	public List<Formula> getSubFormulas() {
-		return subFormulas;
 	}
 }

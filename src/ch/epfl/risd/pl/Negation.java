@@ -3,14 +3,13 @@ package ch.epfl.risd.pl;
 /**
  * This class will represent a Negation of one Formula
  */
-public class Negation extends Formula {
+public class Negation extends UnaryFormula {
 
 	/****************************************************************************/
 	/* VARIABLES */
 	/***************************************************************************/
 
-	/* The negated formula */
-	private Formula formula;
+	
 
 	/****************************************************************************/
 	/* PUBLIC METHODS */

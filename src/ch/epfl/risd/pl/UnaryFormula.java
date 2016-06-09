@@ -10,4 +10,6 @@ public abstract class UnaryFormula extends Formula {
 	/* VARIABLES */
 	/***************************************************************************/
 	
+	/* The  sub-formula this formula is containing */
+	protected Formula formula;
 }

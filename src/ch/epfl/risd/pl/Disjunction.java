@@ -6,14 +6,7 @@ import java.util.List;
 /**
  * This class will represent the Disjunction
  */
-public class Disjunction extends Formula {
-
-	/****************************************************************************/
-	/* VARIABLES */
-	/***************************************************************************/
-
-	/* The list of sub-formulas of which the disjunction is consisted */
-	private List<Formula> subFormulas;
+public class Disjunction extends BinaryFormula {
 
 	/****************************************************************************/
 	/* PUBLIC METHODS */
@@ -61,10 +54,5 @@ public class Disjunction extends Formula {
 		/* Cut the last star */
 		sb.setLength(sb.length() - 1);
 		return sb.toString();
-	}
-
-	/* Get the list of sub-formulas */
-	public List<Formula> getSubFormulas() {
-		return subFormulas;
 	}
 }
