@@ -45,30 +45,8 @@ public class Conjunction extends BinaryFormula {
 		}
 
 		/* Create a temporary list of entities */
-		List<LogicalEntity> temp = new LinkedList<LogicalEntity>();
-		
-		/* If Formula */
-		if (calculatedFirstEntity instanceof Formula) {
-			if (calculatedFirstEntity instanceof UnaryFormula) {
-				/* Cast it to Unary Formula */
-				UnaryFormula unaryFormula = (UnaryFormula) calculatedFirstEntity;
-				/* Add the sub-entity of the unary formula */
-				temp.add(unaryFormula.entity.makeCopy());
-			} else {
-				/* Cast it to Binary Formula */
-				BinaryFormula binaryFormula = (BinaryFormula) calculatedFirstEntity;
-				/* Iterate over the sub-entities and add them */
-				for (LogicalEntity e : binaryFormula.subEntities) {
-					temp.add(e.makeCopy());
-				}
-			}
-		}
-		/* If Literal */
-		else {
-			temp.add(calculatedFirstEntity.makeCopy());
-		}
-		
-		
+		List<LogicalEntity> temp = extractEntities(calculatedFirstEntity);
+
 		/* Iterate starting from the second */
 		for (int i = 1; i < subEntities.size(); i++) {
 			/* Take the current entity and calculate it */
@@ -79,13 +57,12 @@ public class Conjunction extends BinaryFormula {
 				isDisjunction = true;
 				/* We should minimize it */
 			}
-			
-			
+
 			/* If we have detected disjunction */
 			if (isDisjunction) {
-				
-			}else{
-				
+
+			} else {
+
 			}
 		}
 
