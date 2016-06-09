@@ -42,6 +42,21 @@ public class Disjunction extends BinaryFormula {
 	}
 
 	@Override
+	public LogicalEntity makeCopy() {
+
+		/* Create a temporary list */
+		List<LogicalEntity> temp = new LinkedList<LogicalEntity>();
+
+		/* Iterate over the list of sub-entities */
+		for (LogicalEntity e : subEntities) {
+			/* Add copy of them */
+			temp.add(e.makeCopy());
+		}
+
+		return new Disjunction(temp);
+	}
+
+	@Override
 	public String toString() {
 		/* The resulting string */
 		StringBuilder sb = new StringBuilder();

@@ -10,6 +10,6 @@ public abstract class UnaryFormula extends Formula {
 	/* VARIABLES */
 	/***************************************************************************/
 	
-	/* The  sub-formula this formula is containing */
+	/* The  sub-entity this formula is containing */
 	protected LogicalEntity entity;
 }

@@ -15,5 +15,7 @@ public abstract class LogicalEntity {
 
 	/* Function to evaluate the formula */
 	public abstract String evaluate();
-
+	
+	/* Function to make copy of the object */
+	public abstract LogicalEntity makeCopy();
 }

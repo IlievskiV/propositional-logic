@@ -31,7 +31,66 @@ public class Conjunction extends BinaryFormula {
 
 	@Override
 	public LogicalEntity calculate() {
-		// TODO Auto-generated method stub
+
+		/* Flag indicating the end result */
+		boolean isDisjunction = false;
+
+		/* Calculate the first entity */
+		LogicalEntity calculatedFirstEntity = subEntities.get(0).calculate();
+
+		/* Check if it is disjunction */
+		if (calculatedFirstEntity instanceof Disjunction) {
+			isDisjunction = true;
+			/* Also we should minimize it */
+		}
+
+		/* Create a temporary list of entities */
+		List<LogicalEntity> temp = new LinkedList<LogicalEntity>();
+		
+		/* If Formula */
+		if (calculatedFirstEntity instanceof Formula) {
+			if (calculatedFirstEntity instanceof UnaryFormula) {
+				/* Cast it to Unary Formula */
+				UnaryFormula unaryFormula = (UnaryFormula) calculatedFirstEntity;
+				/* Add the sub-entity of the unary formula */
+				temp.add(unaryFormula.entity.makeCopy());
+			} else {
+				/* Cast it to Binary Formula */
+				BinaryFormula binaryFormula = (BinaryFormula) calculatedFirstEntity;
+				/* Iterate over the sub-entities and add them */
+				for (LogicalEntity e : binaryFormula.subEntities) {
+					temp.add(e.makeCopy());
+				}
+			}
+		}
+		/* If Literal */
+		else {
+			temp.add(calculatedFirstEntity.makeCopy());
+		}
+		
+		
+		/* Iterate starting from the second */
+		for (int i = 1; i < subEntities.size(); i++) {
+			/* Take the current entity and calculate it */
+			LogicalEntity calculatedCurrentEntity = subEntities.get(i).calculate();
+
+			/* Check if it is disjunction */
+			if (calculatedCurrentEntity instanceof Disjunction) {
+				isDisjunction = true;
+				/* We should minimize it */
+			}
+			
+			
+			/* If we have detected disjunction */
+			if (isDisjunction) {
+				
+			}else{
+				
+			}
+		}
+
+		/* Iterate over the sub-entities */
+
 		return null;
 	}
 
@@ -39,6 +98,20 @@ public class Conjunction extends BinaryFormula {
 	public String evaluate() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public LogicalEntity makeCopy() {
+
+		/* Create a temporary list */
+		List<LogicalEntity> temp = new LinkedList<LogicalEntity>();
+
+		/* Iterate over the list of sub-entities */
+		for (LogicalEntity e : subEntities) {
+			/* Add copy of them */
+			temp.add(e.makeCopy());
+		}
+		return new Conjunction(temp);
 	}
 
 	@Override

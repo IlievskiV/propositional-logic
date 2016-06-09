@@ -77,6 +77,12 @@ public class Negation extends UnaryFormula {
 	}
 
 	@Override
+	public LogicalEntity makeCopy() {
+		/* Return different Negation object */
+		return new Negation(entity.makeCopy());
+	}
+
+	@Override
 	public String evaluate() {
 		// TODO Auto-generated method stub
 		return null;
