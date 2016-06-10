@@ -142,10 +142,11 @@ public class Conjunction extends BinaryFormula {
 		temp.add(new PropositionalVariable("p12"));
 
 		LogicalEntity e = new Conjunction(
-				new Conjunction(new Disjunction(new PropositionalVariable("p2"), new PropositionalVariable("p3")),
+				new Conjunction(
+						new Negation(new Disjunction(new PropositionalVariable("p2"), new PropositionalVariable("p3"))),
 						new PropositionalVariable("p4")),
 				new Disjunction(new PropositionalVariable("p1"), new Conjunction(temp)));
-		
+
 		System.out.println(e.calculate());
 
 	}
