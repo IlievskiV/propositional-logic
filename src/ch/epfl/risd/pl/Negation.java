@@ -90,6 +90,6 @@ public class Negation extends UnaryFormula {
 
 	@Override
 	public String toString() {
-		return entity.toString();
+		return "!" + entity.toString();
 	}
 }

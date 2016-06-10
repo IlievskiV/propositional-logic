@@ -28,19 +28,25 @@ public class Conjunction extends BinaryFormula {
 	public Conjunction(List<LogicalEntity> subEntities) {
 		this.subEntities = subEntities;
 	}
-
+	
+	
+	
+	/* This function is mess! */
 	@Override
 	public LogicalEntity calculate() {
 
-		/* Flag indicating the end result */
-		boolean isDisjunction = false;
+		/* Flag indicating the type of the left side */
+		boolean isLeftDisjunction = false;
+
+		/* Flag indicating the type of the right side */
+		boolean isRightDisjunction = false;
 
 		/* Calculate the first entity */
 		LogicalEntity calculatedFirstEntity = subEntities.get(0).calculate();
 
 		/* Check if it is disjunction */
 		if (calculatedFirstEntity instanceof Disjunction) {
-			isDisjunction = true;
+			isLeftDisjunction = true;
 			/* Also we should minimize it */
 		}
 
@@ -49,12 +55,15 @@ public class Conjunction extends BinaryFormula {
 
 		/* Iterate starting from the second */
 		for (int i = 1; i < subEntities.size(); i++) {
+			/* Flag indicating the type of the right side */
+			isRightDisjunction = false;
+
 			/* Take the current entity and calculate it */
 			LogicalEntity calculatedCurrentEntity = subEntities.get(i).calculate();
 
 			/* Check if it is disjunction */
 			if (calculatedCurrentEntity instanceof Disjunction) {
-				isDisjunction = true;
+				isRightDisjunction = true;
 				/* We should minimize it */
 			}
 
@@ -65,7 +74,7 @@ public class Conjunction extends BinaryFormula {
 			List<LogicalEntity> temp = new LinkedList<LogicalEntity>();
 
 			/* If we have detected disjunction */
-			if (isDisjunction) {
+			if (isLeftDisjunction && isRightDisjunction) {
 				/* Iterate over the left */
 				for (LogicalEntity l : left) {
 					/* Iterate over the right */
@@ -82,6 +91,34 @@ public class Conjunction extends BinaryFormula {
 						temp.add(new Conjunction(all));
 					}
 				}
+			} else if (isLeftDisjunction && !isRightDisjunction) {
+				/* Every term from the left with the term of the right */
+				for (LogicalEntity l : left) {
+
+					List<LogicalEntity> all = new LinkedList<LogicalEntity>();
+
+					all.addAll(extractEntities(l));
+					all.addAll(right);
+
+					temp.add(new Conjunction(all));
+
+				}
+
+				isLeftDisjunction = true;
+
+			} else if (!isLeftDisjunction && isRightDisjunction) {
+
+				for (LogicalEntity r : right) {
+					List<LogicalEntity> all = new LinkedList<LogicalEntity>();
+
+					all.addAll(extractEntities(r));
+					all.addAll(left);
+
+					temp.add(new Conjunction(all));
+				}
+
+				isLeftDisjunction = true;
+
 			} else {
 				temp.addAll(left);
 				temp.addAll(right);
@@ -92,7 +129,7 @@ public class Conjunction extends BinaryFormula {
 
 		}
 
-		if (isDisjunction) {
+		if (isLeftDisjunction) {
 			return new Disjunction(left);
 		} else {
 			return new Conjunction(left);
@@ -143,11 +180,10 @@ public class Conjunction extends BinaryFormula {
 
 		LogicalEntity e = new Conjunction(
 				new Conjunction(
-						new Negation(new Disjunction(new PropositionalVariable("p2"), new PropositionalVariable("p3"))),
+						new Disjunction(new PropositionalVariable("p2"), new PropositionalVariable("p3")),
 						new PropositionalVariable("p4")),
 				new Disjunction(new PropositionalVariable("p1"), new Conjunction(temp)));
 
 		System.out.println(e.calculate());
-
 	}
 }
