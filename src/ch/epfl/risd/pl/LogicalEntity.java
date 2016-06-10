@@ -43,6 +43,10 @@ public abstract class LogicalEntity {
 				}
 			}
 		}
+		/* If Literal */
+		else {
+			temp.add(entity);
+		}
 		return temp;
 	}
 }

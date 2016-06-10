@@ -31,31 +31,17 @@ public class Disjunction extends BinaryFormula {
 
 	@Override
 	public LogicalEntity calculate() {
-
-		/* Calculate the first entity */
-		LogicalEntity calculatedFirstEntity = subEntities.get(0).calculate();
-
-		/* Create a temporary list of entities */
-		List<LogicalEntity> left = extractEntities(calculatedFirstEntity);
-
-		/* Iterate starting from the second */
-		for (int i = 1; i < subEntities.size(); i++) {
-			/* Take the current entity and calculate it */
-			LogicalEntity calculatedCurrentEntity = subEntities.get(i).calculate();
-
-			/* Extract the right list */
-			List<LogicalEntity> right = extractEntities(calculatedCurrentEntity);
-
-			/* Create empty temporary list */
-			List<LogicalEntity> temp = new LinkedList<LogicalEntity>();
-
-			temp.addAll(left);
-			temp.addAll(right);
-
-			left = temp;
+		
+		/* Create empty temporary list */
+		List<LogicalEntity> res = new LinkedList<LogicalEntity>();
+		
+		
+		for(LogicalEntity e : subEntities){
+			LogicalEntity calculatedCurrentEntity = e.calculate();
+			res.add(calculatedCurrentEntity);
 		}
-
-		return new Disjunction(left);
+		
+		return new Disjunction(res);
 	}
 
 	@Override

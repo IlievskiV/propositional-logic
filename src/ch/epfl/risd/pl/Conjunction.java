@@ -71,12 +71,20 @@ public class Conjunction extends BinaryFormula {
 					/* Iterate over the right */
 					for (LogicalEntity r : right) {
 						/* Add them as a conjunction */
-						temp.add(new Conjunction(l.makeCopy(), r.makeCopy()));
+
+						/* First extract both entities */
+						List<LogicalEntity> all = new LinkedList<LogicalEntity>();
+
+						/* Merge them in one list */
+						all.addAll(extractEntities(l));
+						all.addAll(extractEntities(r));
+
+						temp.add(new Conjunction(all));
 					}
 				}
 			} else {
-				/* It should have only one element */
-				temp.add(new Conjunction(left.get(0), right.get(0)));
+				temp.addAll(left);
+				temp.addAll(right);
 			}
 
 			/* Change left and temporary */
@@ -124,5 +132,21 @@ public class Conjunction extends BinaryFormula {
 		/* Cut the last star */
 		sb.setLength(sb.length() - 1);
 		return sb.toString();
+	}
+
+	public static void main(String[] args) {
+
+		List<LogicalEntity> temp = new LinkedList<LogicalEntity>();
+		temp.add(new PropositionalVariable("p8"));
+		temp.add(new PropositionalVariable("p5"));
+		temp.add(new PropositionalVariable("p12"));
+
+		LogicalEntity e = new Conjunction(
+				new Conjunction(new Disjunction(new PropositionalVariable("p2"), new PropositionalVariable("p3")),
+						new PropositionalVariable("p4")),
+				new Disjunction(new PropositionalVariable("p1"), new Conjunction(temp)));
+		
+		System.out.println(e.calculate());
+
 	}
 }
